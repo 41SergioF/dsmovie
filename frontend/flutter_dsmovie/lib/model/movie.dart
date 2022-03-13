@@ -1,9 +1,9 @@
 class Movie {
-  int? id;
-  String? title;
-  double? score;
-  int? count;
-  String? image;
+  int id = 0;
+  String title = '';
+  double score = 0;
+  int count = 0;
+  String image = '';
 
   Movie(this.id, this.image, this.score, this.count, this.title);
 

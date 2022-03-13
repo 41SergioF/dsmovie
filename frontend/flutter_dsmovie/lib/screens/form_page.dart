@@ -30,9 +30,7 @@ class _FormPageState extends State<FormPage> {
         actions: [
           Image.asset('assets/images/github.png'),
           GestureDetector(
-            onTap: () {
-              print('onTap');
-            },
+            onTap: () {},
             child: const Padding(
               padding: EdgeInsets.only(right: 10),
               child: Align(
@@ -60,27 +58,31 @@ class _FormPageState extends State<FormPage> {
                   ),
                 ),
               ),
-              const TextField(
-                //controller: _controllerEmail,
+              TextField(
+                controller: _controllerEmail,
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'email',
-                  hintText: 'Informe seu email...'
-                ),
+                decoration: const InputDecoration(
+                    labelText: 'email', hintText: 'Informe seu email...'),
               ),
               const Padding(padding: EdgeInsets.all(10)),
-              const TextField(
-                //controller: _controllerScore,
+              TextField(
+                controller: _controllerScore,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Avaliação',
                   hintText: 'Informe sua avaliação...',
                 ),
               ),
               const Padding(padding: EdgeInsets.all(10)),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_controllerEmail.text.isEmpty ||
+                      _controllerScore.text.isEmpty) {
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF4d41c0),
                   minimumSize: const Size(300, 50),
@@ -89,7 +91,9 @@ class _FormPageState extends State<FormPage> {
               ),
               const Padding(padding: EdgeInsets.all(10)),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF4d41c0),
                   minimumSize: const Size(300, 50),

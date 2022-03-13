@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dsmovie/model/movie.dart';
+import 'package:flutter_dsmovie/screens/form_page.dart';
 
 class MovieCard extends StatefulWidget {
-  const MovieCard({Key? key}) : super(key: key);
+
+  final Movie _movie;
+
+  const MovieCard(this._movie, {Key? key}) : super(key: key);
 
   @override
   State<MovieCard> createState() => _MovieCardState();
 }
 
 class _MovieCardState extends State<MovieCard> {
-  //test
-  Map<String, dynamic> movie = {
-    'id': 1,
-    'title': "The Witcher",
-    'score': 4.5,
-    'count': 2,
-    'image':
-        'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg',
-  };
-
-  //Movie _movie = Movie.fromMap(map);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +24,11 @@ class _MovieCardState extends State<MovieCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.network(movie['image']),
+          Image.network(widget._movie.image),
           Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 50),
             child: Text(
-              movie['title'],
+              widget._movie.title,
               style: const TextStyle(
                 fontSize: 25,
                 color: Color(0XFF4A4A4A),
@@ -42,7 +36,7 @@ class _MovieCardState extends State<MovieCard> {
             ),
           ),
           Text(
-            movie['score'].toString(),
+            widget._movie.score.toString(),
             style: const TextStyle(
               fontSize: 25,
               color: Color(0xFFFFBB3A),
@@ -63,13 +57,16 @@ class _MovieCardState extends State<MovieCard> {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
-              '${movie['count']} avaliações',
+              '${widget._movie.count} avaliações',
               style: const TextStyle(fontSize: 18, color: Color(0xFF989898)),
             ),
           ),
           ElevatedButton(
             onPressed: () {
-              print('onTap - avalivar');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FormPage()),
+              );
             },
             style: ElevatedButton.styleFrom(
               primary: const Color(0xFF4d41c0),
