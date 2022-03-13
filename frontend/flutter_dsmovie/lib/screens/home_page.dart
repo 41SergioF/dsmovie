@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dsmovie/components/movie_card.dart';
 import 'package:flutter_dsmovie/model/movie.dart';
+
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,19 +15,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Movie _movie;
+  Container _body = Container(color:Colors.grey,);
+
+  void getMovieById(int id) async {
+    var request = http.Request('GET',
+        Uri.parse('https://carlos-sergio-dsmovie.herokuapp.com/movies/5'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      Map map = jsonDecode(await response.stream.bytesToString());
+      setState(() {
+        _movie = Movie.fromMap(map);
+        _body = Container(child: MovieCard(_movie),);
+      });
+    } else {}
+  }
 
   @override
   void initState() {
-    Map<String, dynamic> _map = {
-      'id': 1,
-      'title': "The Witcher",
-      'score': 4.5,
-      'count': 2,
-      'image':
-          'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg',
-    };
+    getMovieById(5);
     super.initState();
-    _movie = Movie.fromMap(_map);
   }
 
   @override
@@ -35,8 +47,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Image.asset('assets/images/github.png'),
           GestureDetector(
-            onTap: () {
-            },
+            onTap: () {},
             child: const Padding(
               padding: EdgeInsets.only(right: 10),
               child: Align(
@@ -47,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Center(
-        child: MovieCard(_movie),
+        child: _body,
       ),
     );
   }
