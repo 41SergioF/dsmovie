@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dsmovie/screens/home_page.dart';
+import 'package:flutter_dsmovie/screens/form_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'DSMovie',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const FormPage(),
       debugShowCheckedModeBanner: false,
     );
   }
