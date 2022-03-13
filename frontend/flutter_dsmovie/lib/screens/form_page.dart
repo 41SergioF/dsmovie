@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dsmovie/model/movie.dart';
 
 class FormPage extends StatefulWidget {
-  const FormPage({Key? key}) : super(key: key);
+  final Movie _movie;
+  const FormPage(this._movie, {Key? key}) : super(key: key);
 
   @override
   State<FormPage> createState() => _FormPageState();
@@ -10,16 +12,6 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerScore = TextEditingController();
-
-  //test
-  Map<String, dynamic> movie = {
-    'id': 1,
-    'title': "The Witcher",
-    'score': 4.5,
-    'count': 2,
-    'image':
-        'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +37,11 @@ class _FormPageState extends State<FormPage> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Image.network(movie['image']),
+              Image.network(widget._movie.image),
               Container(
                 padding: const EdgeInsets.only(top: 5),
                 child: Text(
-                  movie['title'],
+                  widget._movie.title,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Color(

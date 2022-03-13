@@ -65,7 +65,7 @@ class _MovieCardState extends State<MovieCard> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const FormPage()),
+                MaterialPageRoute(builder: (context) => FormPage(widget._movie)),
               );
             },
             style: ElevatedButton.styleFrom(
