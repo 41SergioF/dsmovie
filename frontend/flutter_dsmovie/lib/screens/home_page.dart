@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dsmovie/components/movie_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xFF4d41c0),
         title: const Text('DSMovie'),
         actions: [
-          Image.asset('images/github.png'),
+          Image.asset('assets/images/github.png'),
           GestureDetector(
             onTap: (){
               print('onTap');
@@ -29,16 +30,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Container(),
+      body: const Center(
+        child: MovieCard(),
+      ),
     );
   }
 }
-/**Row(
-            children: [
-              Image.asset('images/github.png'),
-              const Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: Text('/41SergioF'),
-              ),
-            ],
-          ) */
