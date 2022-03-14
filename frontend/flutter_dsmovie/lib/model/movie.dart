@@ -16,9 +16,4 @@ class Movie {
     count = map['count'];
     image = map['image'];
   }
-  @override
-  String toString() {
-    return super.toString() +
-        '${id}\n ${title}\n ${score.toString()}\n ${count.toString()}\n ${image}\n';
-  }
 }
