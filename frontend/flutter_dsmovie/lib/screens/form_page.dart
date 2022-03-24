@@ -11,7 +11,7 @@ class FormPage extends StatefulWidget {
 
 class _FormPageState extends State<FormPage> {
   final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerScore = TextEditingController();
+  String _dropdownValue = '1';
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +58,31 @@ class _FormPageState extends State<FormPage> {
                     labelText: 'email', hintText: 'Informe seu email...'),
               ),
               const Padding(padding: EdgeInsets.all(10)),
-              TextField(
-                controller: _controllerScore,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: 'Avaliação',
-                  hintText: 'Informe sua avaliação...',
+              DropdownButton<String>(
+                value: _dropdownValue,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                
+                  color: Colors.deepPurple,
                 ),
+                items: <String>['1', '2', '3', '4', '5']
+                    .map(
+                      (String value) => DropdownMenuItem<String>(
+                          child: Text(value), value: value),
+                    )
+                    .toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _dropdownValue = newValue!;
+                  });
+                },
               ),
               const Padding(padding: EdgeInsets.all(10)),
               ElevatedButton(
                 onPressed: () {
                   if (_controllerEmail.text.isEmpty ||
-                      _controllerScore.text.isEmpty) {
+                      _dropdownValue == 'Nota') {
                   } else {
                     Navigator.pop(context);
                   }
@@ -99,3 +111,5 @@ class _FormPageState extends State<FormPage> {
     );
   }
 }
+
+class $ {}
